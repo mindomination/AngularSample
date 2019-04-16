@@ -1,0 +1,44 @@
+
+
+<div>
+<p> Search for country by name</p>>
+    <input type="text" [(ngModel)]="term">
+
+</div>
+
+<div>
+  <img style = "width: 50px; height: 50px" src="http://clipart-library.com/data_images/424172.png" />
+  <h4>
+      Likes:  {{LocalCounter}} 
+  </h4>
+</div>
+
+
+<h3>Countries List</h3>
+
+<br><hr>
+<table class="table" align="left">
+        <tr align="left">
+          <th>Country</th>
+          <th>Alpha Code</th>
+          <th>Region</th>
+          <th>Native Name</th>
+          <th>Capital</th>
+          <th>Population</th>
+          <th> isFavorite? </th>
+          <th>Flag</th>
+          <th> </th>
+        </tr>
+        <tr align="left" *ngFor=" let country of dataService.data|filter:term">
+          <td> {{ country.name  }} </td>
+          <td> {{ country.alpha2Code }}</td>
+          <td> {{ country.region  }} </td>
+          <td> {{ country.nativeName  }}</td>
+          <td> {{ country.capital }} </td>
+          <td> {{ country.population|isLarge }}</td>
+          <td> <app-favorite (SendLikes)="CounterUp($event)"> </app-favorite> </td>
+          <td> <img   style="width: 50px; height: 25px" [src]="country.flag" /> </td>
+        </tr>
+</table> 
+
+  
